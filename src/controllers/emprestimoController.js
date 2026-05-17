@@ -1,8 +1,10 @@
-const Emprestimo = require('../models/Emprestimo')
+const Emprestimo =
+  require('../models/Emprestimo')
 
-const Livro = require('../models/Livro')
+const Livro =
+  require('../models/Livro')
 
-// CRIAR EMPRÉSTIMO
+/* CRIAR EMPRÉSTIMO */
 
 exports.criarEmprestimo = async (
   req,
@@ -24,6 +26,7 @@ exports.criarEmprestimo = async (
       return res.status(404).json({
         erro: 'Livro não encontrado'
       })
+
     }
 
     if (
@@ -33,6 +36,7 @@ exports.criarEmprestimo = async (
       return res.status(400).json({
         erro: 'Livro indisponível'
       })
+
     }
 
     const emprestimo =
@@ -59,10 +63,12 @@ exports.criarEmprestimo = async (
     res.status(500).json({
       erro: error.message
     })
+
   }
+
 }
 
-// LISTAR EMPRÉSTIMOS
+/* LISTAR EMPRÉSTIMOS */
 
 exports.listarEmprestimos = async (
   req,
@@ -89,10 +95,12 @@ exports.listarEmprestimos = async (
     res.status(500).json({
       erro: error.message
     })
+
   }
+
 }
 
-// DEVOLVER LIVRO
+/* DEVOLVER LIVRO */
 
 exports.devolverLivro = async (
   req,
@@ -112,6 +120,7 @@ exports.devolverLivro = async (
         erro:
           'Empréstimo não encontrado'
       })
+
     }
 
     if (emprestimo.devolvido) {
@@ -120,6 +129,7 @@ exports.devolverLivro = async (
         erro:
           'Livro já devolvido'
       })
+
     }
 
     emprestimo.devolvido = true
@@ -152,5 +162,7 @@ exports.devolverLivro = async (
     res.status(500).json({
       erro: error.message
     })
+
   }
+
 }

@@ -8,18 +8,49 @@ const routes = require('./routes')
 
 const app = express()
 
+/* CORS */
+
 app.use(cors({
   origin: '*',
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'Authorization']
+  methods: [
+    'GET',
+    'POST',
+    'PUT',
+    'DELETE'
+  ],
+  allowedHeaders: [
+    'Content-Type',
+    'Authorization'
+  ]
 }))
+
+/* JSON */
 
 app.use(express.json())
 
+/* ROTAS */
+
 app.use('/api', routes)
 
+/* MONGODB */
+
 mongoose.connect(process.env.MONGO_URI)
-  .then(() => console.log('Mongo conectado'))
-  .catch(err => console.log(err))
+
+  .then(() => {
+
+    console.log(
+      '✅ MongoDB conectado'
+    )
+
+  })
+
+  .catch((err) => {
+
+    console.error(
+      '❌ Erro MongoDB:',
+      err
+    )
+
+  })
 
 module.exports = app

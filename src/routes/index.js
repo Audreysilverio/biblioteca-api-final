@@ -1,30 +1,49 @@
 const express = require('express')
+
 const router = express.Router()
 
-const livrosRoutes = require('./livros')
-const authRoutes = require('./auth')
-const emprestimosRoutes = require('./emprestimos')
-const usuariosRoutes = require('./usuarios')
-const reservasRoutes =
-  require('./reservas')
+const livrosRoutes =
+  require('./livros')
 
-router.use('/livros', livrosRoutes)
+const authRoutes =
+  require('./auth')
 
-router.use('/auth', authRoutes)
+const emprestimosRoutes =
+  require('./emprestimos')
 
-router.use('/emprestimos', emprestimosRoutes)
+const usuariosRoutes =
+  require('./usuarios')
 
-router.use('/usuarios', usuariosRoutes)
-
-router.get('/', (req, res) => {
-  res.json({
-    mensagem: 'API funcionando'
-  })
-})
+/* ROTAS */
 
 router.use(
-  '/reservas',
-  reservasRoutes
+  '/livros',
+  livrosRoutes
 )
+
+router.use(
+  '/auth',
+  authRoutes
+)
+
+router.use(
+  '/emprestimos',
+  emprestimosRoutes
+)
+
+router.use(
+  '/usuarios',
+  usuariosRoutes
+)
+
+/* STATUS API */
+
+router.get('/', (req, res) => {
+
+  res.json({
+    mensagem: '✅ API funcionando'
+  })
+
+})
 
 module.exports = router
