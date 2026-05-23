@@ -6,7 +6,7 @@ const auth = require('../middlewares/auth')
 
 router.get('/', auth, controller.listarEmprestimos)
 
-router.post('/', auth, controller.criarEmprestimo)
+router.post('/', controller.criarEmprestimo)
 
 router.put(
   '/devolver/:id',
